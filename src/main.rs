@@ -15,7 +15,27 @@ struct  Article{
 }
 
 fn main(){
+let json = r#"
+{
+    "article":"how to work with json in rust",
+    "author":"tonmoy",
+    "paragraph":[
+        {
+            "name":"Starting sentence"
+        },
+        {
+            "name":"body od the paragraph"
+        },
+        {
+            "name":"end od the paragraph"
+        }
+    ]
+  }"#;
+  let parsed: Article= read_json_typed(json);
+  println!("\n\n the name of the first paragraph is :{}",parsed.paragraph[0].name);
 
-
-    
+}
+fn read_json_typed(raw_json: &str)->Article{
+    let parsed: Article= serde_json::from_str(raw_json).unwrap();
+    return parsed;
 }
