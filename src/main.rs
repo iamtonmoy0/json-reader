@@ -1,12 +1,10 @@
 use serde::{Deserialize,Serialize};
 
-#[derive(Serialize,Deserialize)]
-
-// structure
-struct Paragraph{
+#[derive(Serialize, Deserialize)]
+struct Paragraph {
     name: String
-
 }
+
 #[derive(Serialize,Deserialize)]
 struct  Article{
     article:String,
@@ -31,11 +29,12 @@ let json = r#"
         }
     ]
   }"#;
-  let parsed: Article= read_json_typed(json);
+  let parsed: Article = read_json_typed(json);
+
   println!("\n\n the name of the first paragraph is :{}",parsed.paragraph[0].name);
 
 }
-fn read_json_typed(raw_json: &str)->Article{
-    let parsed: Article= serde_json::from_str(raw_json).unwrap();
+fn read_json_typed(raw_json: &str) -> Article{
+    let parsed: Article = serde_json::from_str(raw_json).unwrap();
     return parsed;
 }
